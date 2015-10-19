@@ -87,11 +87,15 @@ var user = {
   email: 'iliketurtles@gmail.com'
 };
 
+
 var getUsername = function(){
   console.log(this.username);
 };
 
 setTimeout(getUsername, 5000);
+
+var getUsernameVar = user.getUsername.bind(user);
+
 
 //Above you're given an object, a function, and a setTimeout invocation. After 5 seconds, what will the getUsername function return?
 
@@ -100,6 +104,20 @@ setTimeout(getUsername, 5000);
 //In the example above, what is the 'this keyword' bound to when getUsername runs?
 
   //Answer Here
-//It is not bound to anything...trying to bind to the getUsername 
+//It is not bound to anything...trying to bind to the getUsername.....or, setTimeout? / window(the global object)?
 
 //Fix the setTimeout invocation so that the user object will be the focal object when getUsername is ran.
+var user = {
+  username: 'iliketurtles',
+  age: 13,
+  email: 'iliketurtles@gmail.com',
+  getUsername: function() {
+    console.log(this.username);
+  }
+};
+
+var getUsernameVar = user.getUsername.bind(user);
+
+//user.getUsername();  //1st console log
+
+setTimeout(getUsernameVar, 5000);//2nd
